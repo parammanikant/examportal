@@ -11,6 +11,9 @@ if(!empty($_POST)) {
     $time = $_POST['class_time'];
 
     $db->query("INSERT INTO classes (class_name,class_teacher,class_time) VALUES ('$name',$teacher,'$time')");
+
+    header("location: classes.php");
+
 }
 
 ?>

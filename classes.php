@@ -3,7 +3,7 @@ include('header.php');
 include('navbar.php');
 $db = mysqli_connect('localhost','root','','ex_portal');
 
-$result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_time,teachers.teacher_name from classes INNER JOIN teachers ON teachers.teacher_id = classes.class_teacher WHERE classes.class_status = 1");
+$result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_time,teachers.teacher_name from classes INNER JOIN teachers ON teachers.teacher_id = classes.class_teacher WHERE classes.class_status = 1 limit 5");
 
 ?>
 
@@ -13,7 +13,13 @@ $result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_
 
 <div class="row">
 
-    <table class="table table-responsive table-striped">
+<div class="row">
+    <div class="w-25" style="position:relative; left:70%;">
+        <input type="text" class="form-control border-5 border-black searchclassinput" placeholder="Seach Here" onkeyup="searchClasses()">
+    </div>
+</div>
+
+    <table class="table table-responsive table-striped text-center">
 
         <thead>
             <th> Class Title </th>
@@ -22,7 +28,7 @@ $result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_
             <th> Action </th>
         </thead>
 
-        <tbody>
+        <tbody id="dybnamic-rows">
 
         <?php foreach($result AS $cls) {?>
             <tr>
