@@ -25,23 +25,29 @@ function deleteTeacher(teacher_id){
     })
 }
 
-function searchClasses(){
-    let val = $(".searchclassinput").val();
+function searchClasses(searchText){
     
-    $.ajax(
-        {
-            url : 'http://localhost/exportal/searchclasses.php',
-            data : {
-                searchtext : val
-            },
-            method : 'POST',
-            success : function(resp){
-               $("#dybnamic-rows").html(resp);
-            },
-            error : function(error){
-                alert('sommething went wrong');
-            }
+    $.ajax({
+        url : "http://localhost/exportal/searchclasses.php",
+        data : {
+            search_by : searchText
+        },
+        async :  false,
+        method : 'POST',
+        success : function(res){
+            document.getElementById('dybnamic-rows').innerHTML = res;
+        },
+        error : function(error){
 
         }
-    )
+    })
+
+}
+
+function deleteClass(id){
+    let cnf = confirm("Are you sure?");
+
+    if(cnf == true){
+        window.location.href = `deleteClass.php?id=${id}`;
+    }
 }

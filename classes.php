@@ -3,7 +3,7 @@ include('header.php');
 include('navbar.php');
 $db = mysqli_connect('localhost','root','','ex_portal');
 
-$result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_time,teachers.teacher_name from classes INNER JOIN teachers ON teachers.teacher_id = classes.class_teacher WHERE classes.class_status = 1 limit 5");
+$result = $db->query("SELECT classes.class_Id,classes.class_name, classes.class_time,teachers.teacher_name from classes INNER JOIN teachers ON teachers.teacher_id = classes.class_teacher WHERE classes.class_status = 1 limit 5");
 
 ?>
 
@@ -15,7 +15,7 @@ $result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_
 
 <div class="row">
     <div class="w-25" style="position:relative; left:70%;">
-        <input type="text" class="form-control border-5 border-black searchclassinput" placeholder="Seach Here" onkeyup="searchClasses()">
+        <input type="text" class="form-control border-5 border-black" placeholder="Seach Here" onkeyup="searchClasses(this.value)">
     </div>
 </div>
 
@@ -35,7 +35,7 @@ $result = $db->query("SELECT classes.class_id,classes.class_name, classes.class_
                 <td> <?php echo $cls['class_name'];?> </td>
                 <td> <?php echo $cls['class_time'];?> </td>
                 <td> <?php echo $cls['teacher_name'];?> </td>
-                <td> <a href="editClass.php"> Edit </a> &nbsp; <a href="deleteClass.php"> Delete </a> </td>
+                <td> <a href="editClass.php"> Edit </a> &nbsp; <a onclick="deleteClass(<?php echo $cls['class_Id']; ?>)"> Delete </a> </td>
             </tr>
             <?php } ?>
 
