@@ -1,9 +1,35 @@
+<style>
+    .align-right{
+        display: flex;
+        justify-content : right !important;
+        align-items : right !important;
+    }
+</style>
 <?php
 include('header.php');
 include('navbar.php');
 $db = mysqli_connect('localhost','root','','ex_portal');
 
-$result = $db->query("SELECT classes.class_Id,classes.class_name, classes.class_time,teachers.teacher_name from classes INNER JOIN teachers ON teachers.teacher_id = classes.class_teacher WHERE classes.class_status = 1 limit 5");
+if(isset($_REQUEST['pageno'])) {
+    $pageno = $_REQUEST['pageno'];
+}
+
+
+if(empty($pageno)) {
+    $pageno = 0;
+} else {
+    $pageno--;
+}
+
+$ofset = 5 * $pageno;
+
+$result = $db->query("SELECT classes.class_Id,classes.class_name, classes.class_time,teachers.teacher_name from classes INNER JOIN teachers ON teachers.teacher_id = classes.class_teacher WHERE classes.class_status = 1 limit 5 OFFSET $ofset");
+
+$total_record = $db->query("SELECT count(*) as total from classes");
+
+foreach($total_record as $recors){
+    $total_no_record = $recors['total'];
+}
 
 ?>
 
@@ -42,6 +68,24 @@ $result = $db->query("SELECT classes.class_Id,classes.class_name, classes.class_
         </tbody>
 
     </table>
+
+    <div class="row ">
+    <nav class="align-right" aria-label="...">
+
+    <?php if(!empty($total_no_record) && $total_no_record > 0) {?>
+  <ul class="pagination">
+    <?php
+    
+    $totalpage = ceil($total_no_record / 5);
+    
+    for($i=1; $i<=$totalpage; $i++) {?>
+    
+    <li class="page-item"><a class="page-link" href="classes.php?pageno=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+    <?php } ?>
+  </ul>
+  <?php } ?>
+</nav>
+    </div>
 
 </div>
 
