@@ -61,7 +61,7 @@ foreach($total_record as $recors){
                 <td> <?php echo $cls['class_name'];?> </td>
                 <td> <?php echo $cls['class_time'];?> </td>
                 <td> <?php echo $cls['teacher_name'];?> </td>
-                <td> <a href="editClass.php"> Edit </a> &nbsp; <a onclick="deleteClass(<?php echo $cls['class_Id']; ?>)"> Delete </a> </td>
+                <td> <a href="editClass.php?id=<?php echo $cls['class_Id'];?>"> Edit </a> &nbsp; <a onclick="deleteClass(<?php echo $cls['class_Id']; ?>)"> Delete </a> </td>
             </tr>
             <?php } ?>
 

@@ -25,7 +25,7 @@ session_start();
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Students</a>
+          <a class="nav-link" href="students.php">Students</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Tests</a>
