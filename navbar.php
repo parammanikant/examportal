@@ -28,7 +28,7 @@ session_start();
           <a class="nav-link" href="students.php">Students</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tests</a>
+          <a class="nav-link" href="tests.php">Tests</a>
         </li>
 
         <li class="nav-item">

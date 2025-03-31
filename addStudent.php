@@ -10,6 +10,8 @@ if(!empty($_POST)) {
     $name = $_POST['student_name'];
     $email = $_POST['student_email'];
 
+    $student_pass = md5($_POST['student_pass']);
+
     $student_class = $_POST['student_class'];
     $phone = $_POST['student_phone'];
 
@@ -28,7 +30,7 @@ if(!empty($_POST)) {
         move_uploaded_file($image['tmp_name'], 'assets/images/'.$filename);
     }
 
-    $db->query("INSERT INTO students (student_name,student_class,student_email,student_phone,student_gender,student_address,student_image,student_father,father_phone) VALUES('$name',$student_class,'$email','$phone','$gender','$address','$filename','$father_name','$father_phone')");
+    $db->query("INSERT INTO students (student_name,student_class,student_email,student_pass,student_phone,student_gender,student_address,student_image,student_father,father_phone) VALUES('$name',$student_class,'$email','$student_pass','$phone','$gender','$address','$filename','$father_name','$father_phone')");
 
     header("location: students.php?msg=Student Added Successfully!");
 }
@@ -44,6 +46,11 @@ if(!empty($_POST)) {
   <div class="mb-3">
     <label for="email" class="form-label">Student Email:</label>
     <input type="email" class="form-control" id="email" placeholder="Enter Email" name="student_email">
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Student Password:</label>
+    <input type="password" class="form-control" id="email" placeholder="******" name="student_pass">
   </div>
 
   <div class="mb-3">
