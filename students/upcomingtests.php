@@ -16,11 +16,11 @@ $tests = $conn->query("select * from tests WHERE class_id = $class_id AND test_d
 
 <div class="list-group">
   <?php foreach($tests as $test) {?>
-  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+  <div class="list-group-item list-group-item-action" aria-current="true">
     <b><?php echo $test['test_title'];?></b>
     <b style="margin-left: 100px;"> <?php echo $test['test_start_time'];?> To <?php echo $test['test_end_time'];?></b>
-    <button type="button" style="margin-left:90%; margin-bottom:5px;"> Attempt </button>
-  </a>
+    <a style="margin-left:90%;" class="btn btn-primary" href="quiz.php?test_id=<?php echo $test['test_id'];?>&qnum=1"> Attempt </a>
+  </div>
   <?php
   }
   ?>
