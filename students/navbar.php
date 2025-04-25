@@ -1,3 +1,9 @@
+<?php 
+if(empty($_SESSION['studentData'])) {
+  header("location: index.php");
+}
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Exam Portal</a>
@@ -14,7 +20,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="#">My Results</a>
+          <a class="nav-link" href="myresults.php">My Results</a>
         </li>
 
         <li class="nav-item">
